@@ -226,7 +226,7 @@ useEffect(() => {
       {/* ABOUT */}
      <section id="about">
   <div className="reveal">
-    <p className="section-label">// about me</p>
+    <p className="section-label">about me</p>
     <h2 className="section-title">Crafting Code<br></br><span>With Purpose</span></h2>
   </div>
   <div className="about-grid reveal">
@@ -279,7 +279,7 @@ useEffect(() => {
      <section id="workshop">
   <div className="workshop-inner">
     <div className="reveal">
-      <p className="section-label">// my workshop</p>
+      <p className="section-label">my workshop</p>
       <h2 className="section-title">Projects I've<br /><span>Shipped</span></h2>
     </div>
     <div className="projects-grid reveal">
@@ -361,7 +361,7 @@ useEffect(() => {
       {/* CONTACT */}
     <section id="contact">
   <div className="reveal">
-    <p className="section-label">// contact us</p>
+    <p className="section-label">contact us</p>
     <h2 className="contact-glow">Let's Build<br/>Something Together</h2>
     <p className="contact-sub">
       Have a project in mind? Looking for a developer to join your team? I'd love to hear from you. Drop me a message below.
@@ -429,10 +429,10 @@ useEffect(() => {
 <footer>
   <div className="footer-copy">© 2026 Alex XYZ — All rights reserved.</div>
   <div className="footer-socials">
-    <a href="#">GitHub</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">Twitter</a>
-    <a href="#">Resume</a>
+    <a href=" ">GitHub</a>
+    <a href=" ">LinkedIn</a>
+    <a href=" ">Twitter</a>
+    <a href=" ">Resume</a>
   </div>
 </footer>
 
