@@ -21,7 +21,7 @@ function App() {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/contact", form);
+      await axios.post("/api/contact", form);
       alert("Message sent ✅");
 
       setForm({
