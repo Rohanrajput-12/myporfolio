@@ -13,7 +13,7 @@ function Contact() {
   };
 
   const handleSend = () => {
-    axios.post("/api/contact", form)
+    axios.post("http://localhost:5000/api/contact", form)
       .then(res => alert(res.data.message))
       .catch(err => console.log(err));
   };
