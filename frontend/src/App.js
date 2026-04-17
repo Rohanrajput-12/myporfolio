@@ -308,45 +308,15 @@ useEffect(() => {
 
       <div className="project-card">
         <div className="project-num">03 ——</div>
-        <div className="project-title">Orbita UI</div>
-        <div className="project-desc">Open-source React component library with 80+ customisable components. 4k+ GitHub stars, used by teams across 30 countries.</div>
+        <div className="project-title">Weather App</div>
+        <div className="project-desc">
+          Built a weather application to search city and state conditions, displaying real-time data with responsive UI and user-friendly interface.
+        </div>
         <div className="project-tags">
           <span className="tag">React</span>
-          <span className="tag">TypeScript</span>
-          <span className="tag purple">Storybook</span>
-        </div>
-      </div>
-
-      <div className="project-card">
-        <div className="project-num">04 ——</div>
-        <div className="project-title">VaultAuth</div>
-        <div className="project-desc">Zero-trust auth micro-service with OAuth 2.0, biometric support, and anomaly detection. Deployed as a standalone Docker container.</div>
-        <div className="project-tags">
-          <span className="tag">Go</span>
-          <span className="tag purple">JWT</span>
-          <span className="tag pink">OAuth 2.0</span>
-        </div>
-      </div>
-
-      <div className="project-card">
-        <div className="project-num">05 ——</div>
-        <div className="project-title">DataMapPro</div>
-        <div className="project-desc">Interactive data visualisation dashboard for enterprise clients. Custom charting engine, real-time WebSocket feeds, and export pipeline.</div>
-        <div className="project-tags">
-          <span className="tag">D3.js</span>
-          <span className="tag">Next.js</span>
-          <span className="tag purple">WebSockets</span>
-        </div>
-      </div>
-
-      <div className="project-card">
-        <div className="project-num">06 ——</div>
-        <div className="project-title">CloudSync CLI</div>
-        <div className="project-desc">Developer CLI tool for seamless multi-cloud file syncing between AWS, GCP, and Azure. 15k+ weekly npm downloads.</div>
-        <div className="project-tags">
-          <span className="tag">Node.js</span>
-          <span className="tag pink">AWS SDK</span>
-          <span className="tag purple">GCP</span>
+          <span className="tag">HTML</span>
+          <span className="tag">CSS</span>
+          <span className="tag pink">JavaScript</span>
         </div>
       </div>
 
