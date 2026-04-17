@@ -204,7 +204,7 @@ useEffect(() => {
 
       {/* HERO */}
       <section id="home">
-  <span className="hero-badge">✦ Available for hire · 2026</span>
+  <span className="hero-badge">✦ Open to work ✦</span>
   <h1 className="hero-name">Rohan's Zip</h1>
   <p className="hero-role">Web <span className="hl">&amp;</span> Back-End Developer</p>
   <p className="hero-desc">
