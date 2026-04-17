@@ -260,6 +260,10 @@ useEffect(() => {
         <div className="skill-name">HTML & CSS</div>
         <div className="skill-desc">Responsive layouts & modern web design</div>
       </div>
+      <div className="skill-item">
+        <div className="skill-name">MongoDB Atlas / MongoDB Compass</div>
+        <div className="skill-desc">Cloud-based NoSQL database and GUI management tool</div>
+      </div>
     </div>
   </div>
 </section>
