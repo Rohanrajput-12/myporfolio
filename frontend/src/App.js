@@ -21,7 +21,7 @@ function App() {
       return;
     }
     try {
-      await axios.post("https://myporfolio-rouge.vercel.app/api/contact", form);
+      await axios.post("https://myporfolio-6ms5.onrender.com/api/contact", form);
       alert("Message sent ✅");
 
       setForm({
