@@ -231,7 +231,7 @@ useEffect(() => {
   </div>
   <div className="about-grid reveal">
     <div className="about-text">
-      <p>Hey! I'm <strong style={{ color: 'var(--accent)' }}> Alex XYZ</strong>, a full-stack developer with a deep love for building things on the web. With 5+ years of experience, I specialise in creating seamless user experiences backed by solid, scalable server architectures.</p>
+      <p>Hey! I'm <strong style={{ color: 'var(--accent)' }}> Rohan Singh Rajput</strong>, a full-stack developer with a deep love for building things on the web. With 3+ years of experience, I specialise in creating seamless user experiences backed by solid, scalable server architectures.</p>
       <p>Whether it's a sleek front-end interface or a complex RESTful API, I approach every project with the same obsession — clean code, thoughtful design, and real-world performance.</p>
       <p>When I'm not coding, you'll find me contributing to open-source, exploring new frameworks, or building side projects that solve real problems.</p>
     </div>
