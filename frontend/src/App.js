@@ -245,28 +245,20 @@ useEffect(() => {
         <div className="skill-desc">Server-side JavaScript</div>
       </div>
       <div className="skill-item">
-        <div className="skill-name">Python / Django</div>
+        <div className="skill-name">Python</div>
         <div className="skill-desc">Back-end frameworks</div>
       </div>
       <div className="skill-item">
-        <div className="skill-name">PostgreSQL</div>
+        <div className="skill-name">MySQL</div>
         <div className="skill-desc">Relational databases</div>
       </div>
       <div className="skill-item">
-        <div className="skill-name">Docker / K8s</div>
-        <div className="skill-desc">DevOps & containers</div>
+        <div className="skill-name">PHP / Laravel</div>
+        <div className="skill-desc">Backend web development & MVC frameworks</div>
       </div>
       <div className="skill-item">
-        <div className="skill-name">REST / GraphQL</div>
-        <div className="skill-desc">API architecture</div>
-      </div>
-      <div className="skill-item">
-        <div className="skill-name">AWS / GCP</div>
-        <div className="skill-desc">Cloud infrastructure</div>
-      </div>
-      <div className="skill-item">
-        <div className="skill-name">TypeScript</div>
-        <div className="skill-desc">Type-safe development</div>
+        <div className="skill-name">HTML & CSS</div>
+        <div className="skill-desc">Responsive layouts & modern web design</div>
       </div>
     </div>
   </div>
