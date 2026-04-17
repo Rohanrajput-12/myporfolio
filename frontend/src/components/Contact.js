@@ -13,7 +13,7 @@ function Contact() {
   };
 
   const handleSend = () => {
-    axios.post("http://localhost:5000/api/contact", form)
+    axios.post("https://myporfolio-rouge.vercel.app/api/contact", form)
       .then(res => alert(res.data.message))
       .catch(err => console.log(err));
   };
