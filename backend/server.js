@@ -52,7 +52,9 @@ app.use(express.json());
 
 
 
-
+app.use(cors({
+  origin: "https://myporfolio-rouge.vercel.app"
+}));
 
 // ✅ MongoDB Atlas connection
 mongoose.connect(process.env.MONGO_URI)
