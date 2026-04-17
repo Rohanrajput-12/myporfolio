@@ -292,13 +292,17 @@ useEffect(() => {
 
       <div className="project-card">
         <div className="project-num">02 ——</div>
-        <div className="project-title">PulseAPI</div>
-        <div className="project-desc">Developer API platform for real-time analytics. Processes 2M+ events/day with sub-10ms response times using a custom event streaming pipeline.</div>
+        <div className="project-title">Company CRM</div>
+        <div className="project-desc">
+          Developed a CRM system where students apply via QR-based forms. Includes employee management, application tracking, payroll modules, and admin workflows for approval, rejection, and streamlined operations.
+        </div>
         <div className="project-tags">
-          <span className="tag">Python</span>
-          <span className="tag purple">Kafka</span>
-          <span className="tag">GraphQL</span>
-          <span className="tag pink">Docker</span>
+          <span className="tag">PHP</span>
+          <span className="tag">Laravel</span>
+          <span className="tag purple">MySQL</span>
+          <span className="tag">HTML</span>
+          <span className="tag">CSS</span>
+          <span className="tag pink">JavaScript</span>
         </div>
       </div>
 
@@ -421,7 +425,7 @@ useEffect(() => {
 
 {/* Footer */}
 <footer>
-  <div className="footer-copy">© 2026 Alex XYZ — All rights reserved.</div>
+  <div className="footer-copy">© 2026 R-Zip — All rights reserved.</div>
   <div className="footer-socials">
     <a href=" ">GitHub</a>
     <a href=" ">LinkedIn</a>
