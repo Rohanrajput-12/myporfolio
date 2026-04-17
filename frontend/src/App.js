@@ -278,13 +278,15 @@ useEffect(() => {
 
       <div className="project-card">
         <div className="project-num">01 ——</div>
-        <div className="project-title">NexaCommerce</div>
-        <div className="project-desc">A high-performance e-commerce platform handling 50k+ daily orders. Built with microservices, real-time inventory, and a custom recommendation engine.</div>
+        <div className="project-title">My Portfolio</div>
+        <div className="project-desc">
+          I have developed a personal portfolio website to showcase my skills, projects, and technical expertise. The platform highlights my work with a clean, responsive design and provides an overview of my experience, making it easy for recruiters and clients to explore my capabilities.
+        </div>
         <div className="project-tags">
-          <span className="tag">Node.js</span>
           <span className="tag">React</span>
-          <span className="tag purple">PostgreSQL</span>
-          <span className="tag pink">Redis</span>
+          <span className="tag">HTML</span>
+          <span className="tag purple">CSS</span>
+          <span className="tag pink">JavaScript</span>
         </div>
       </div>
 
