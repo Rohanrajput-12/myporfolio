@@ -205,7 +205,7 @@ useEffect(() => {
       {/* HERO */}
       <section id="home">
   <span className="hero-badge">✦ Open to work ✦</span>
-  <h1 className="hero-name">Rohan's Zip</h1>
+  <h1 className="hero-name">Rohan Rajput</h1>
   <p className="hero-role">Web <span className="hl">&amp;</span> Back-End Developer</p>
   <p className="hero-desc">
     I build elegant, high-performance digital experiences — from pixel-perfect UIs to robust server-side architectures. Turning ideas into production-grade reality.
