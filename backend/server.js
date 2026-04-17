@@ -47,19 +47,20 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 
-
-
 app.use(cors({
-  origin: "https://myporfolio-rouge.vercel.app"
+  origin: [
+    "https://myporfolio-rouge.vercel.app",
+    "http://localhost:3000"
+  ]
 }));
 
-// ✅ MongoDB Atlas connection
+// MongoDB Atlas connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Atlas Connected ✅"))
   .catch(err => console.log(err));
+
 // Schema
 const contactSchema = new mongoose.Schema({
   name: String,
@@ -71,7 +72,7 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model("Contact", contactSchema);
 
-// API route
+// ✅ Correct API route
 app.post("/api/contact", async (req, res) => {
   try {
     const data = new Contact(req.body);
