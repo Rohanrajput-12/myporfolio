@@ -287,6 +287,7 @@ useEffect(() => {
           <span className="tag">HTML</span>
           <span className="tag purple">CSS</span>
           <span className="tag pink">JavaScript</span>
+          <span className="tag green">MongoDB Atlas</span>
         </div>
       </div>
 
