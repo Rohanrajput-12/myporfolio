@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 function App() {
 
   const [form, setForm] = useState({
@@ -199,6 +200,8 @@ useEffect(() => {
           <li><a href="#about">About</a></li>
           <li><a href="#workshop">Workshop</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Signup</a></li>
         </ul>
       </nav>
 
