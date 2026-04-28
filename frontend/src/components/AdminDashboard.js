@@ -8,18 +8,23 @@ function AdminDashboard() {
     fetchMessages();
   }, []);
 
-  const fetchMessages = async () => {
-    try {
-      const res = await axios.get(
-        "https://myporfolio-6ms5.onrender.com/api/contact"
-      );
+ const fetchMessages = async () => {
+  try {
+    const res = await axios.get(
+      "https://myporfolio-6ms5.onrender.com/api/contact",
+      {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }
+    );
 
-      setMessages(res.data);
+    setMessages(res.data);
 
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   return (
     <div>
