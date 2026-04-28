@@ -130,29 +130,47 @@ app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // 1. Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
+
+    // 2. Find user
     const user = await User.findOne({ email });
+
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
+    // 3. Check password exists
+    if (!user.password) {
+      return res.status(500).json({ message: "User password missing" });
+    }
+
+    // 4. Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
       return res.status(400).json({ message: "Wrong password" });
     }
 
+    // 5. Create token
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET,   // ✅ FIXED
+      process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.json({
+    // 6. Send response
+    res.status(200).json({
+      message: "Login successful ✅",
       token,
       role: user.role
     });
 
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log("LOGIN ERROR:", err); // 🔴 important
+    res.status(500).json({ message: "Server error ❌" });
   }
 });
 

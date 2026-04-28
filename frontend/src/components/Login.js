@@ -9,9 +9,11 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://myporfolio-6ms5.onrender.com/api/login",
+        "https://myporfolio-6ms5.onrender.com/api/login", // your live backend
         data
       );
+
+      console.log("LOGIN SUCCESS:", res.data);
 
       localStorage.setItem("token", res.data.token);
 
@@ -23,7 +25,8 @@ function Login() {
       }
 
     } catch (err) {
-      alert("Login failed ❌");
+      console.log("LOGIN ERROR:", err.response?.data);
+      alert(err.response?.data?.message || "Login failed ❌");
     }
   };
 
