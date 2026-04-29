@@ -127,7 +127,7 @@ function AdminLogin() {
           <label>Email</label>
           <input
             type="email"
-            placeholder="admin@gmail.com"
+            placeholder=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -137,7 +137,7 @@ function AdminLogin() {
           <label>Password</label>
           <input
             type="password"
-            placeholder="••••••••"
+            placeholder=""
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
