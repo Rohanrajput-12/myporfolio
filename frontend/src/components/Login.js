@@ -118,7 +118,9 @@ function AdminLogin() {
         </div>
 
         <div className="warning">
-          ⚠ Unauthorized access attempts are logged
+          <div className="warn-strip">
+            ⚠ This portal is for system administrators only. Unauthorized access attempts are logged and reported to the system owner.
+          </div>
         </div>
 
         {error && <div className="error">{error}</div>}
