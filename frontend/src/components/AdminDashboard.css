@@ -1,52 +1,99 @@
-.dashboard-bg {
-  min-height: 100vh;
-  padding: 40px;
+body {
+  cursor: none;
   background: #050a10;
   color: #e8f4ff;
-  font-family: 'Syne', sans-serif;
+}
+
+/* Cursor */
+.cursor {
+  width: 12px;
+  height: 12px;
+  background: #00f0ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #00f0ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
 }
 
 .dashboard-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
   color: #00f0ff;
-  text-shadow: 0 0 15px rgba(0,240,255,0.4);
+  font-size: 2rem;
 }
 
-/* LIST FORMAT */
+/* Menu */
+.menu-container {
+  position: relative;
+}
+
+.menu-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #00f0ff;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background: #0b1620;
+  border: 1px solid rgba(0,240,255,0.2);
+  border-radius: 8px;
+}
+
+.dropdown-menu button {
+  padding: 10px;
+  width: 120px;
+  border: none;
+  background: none;
+  color: #ff2f7b;
+  cursor: pointer;
+}
+
+/* Messages */
 .messages-list {
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* ROW CARD */
 .message-row {
-  background: rgba(0, 240, 255, 0.05);
-  border: 1px solid rgba(0, 240, 255, 0.2);
+  background: rgba(0,240,255,0.05);
+  border: 1px solid rgba(0,240,255,0.2);
+  padding: 15px;
   border-radius: 10px;
-  padding: 20px;
-  backdrop-filter: blur(12px);
-  transition: 0.3s;
 }
 
-.message-row:hover {
-  box-shadow: 0 0 20px rgba(0,240,255,0.2);
-  transform: translateY(-3px);
-}
-
-/* HEADER */
+/* Header */
 .row-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
 }
 
 .name {
-  font-weight: bold;
   color: #00f0ff;
-  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .date {
@@ -54,34 +101,28 @@
   color: #888;
 }
 
-/* LABEL ROW */
+/* Fields */
 .row-item {
-  margin-bottom: 6px;
-  font-size: 0.9rem;
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
 }
 
 .label {
-  color: #147ee2;
-  font-weight: bold;
-  margin-right: 6px;
+  min-width: 70px;
+  color: #7b2fff;
 }
 
 .value {
   color: #ccc;
 }
 
-/* MESSAGE BOX */
-.message-box {
-  margin-top: 10px;
-}
-
 .message-text {
-  margin-top: 5px;
-  color: #ddd;
-  line-height: 1.5;
+  flex: 1;
+  word-break: break-word;
 }
 
-/* EMPTY */
+/* Empty */
 .no-data {
   text-align: center;
   color: #888;

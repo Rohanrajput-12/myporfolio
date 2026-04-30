@@ -4,11 +4,20 @@ import "./AdminDashboard.css";
 
 function AdminDashboard() {
   const [messages, setMessages] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  // ✅ Protect route + fetch data
   useEffect(() => {
-    fetchMessages();
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      fetchMessages();
+    }
   }, []);
 
+  // ✅ Fetch messages
   const fetchMessages = async () => {
     try {
       const res = await axios.get(
@@ -20,7 +29,6 @@ function AdminDashboard() {
         }
       );
 
-      // 🔥 latest → old
       const sorted = res.data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -32,50 +40,84 @@ function AdminDashboard() {
     }
   };
 
+  // ✅ Logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
+  // ✅ Close menu on outside click
   useEffect(() => {
-  const cursor = document.getElementById("cursor");
-  const ring = document.getElementById("cursorRing");
+    const handleClickOutside = () => setMenuOpen(false);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  // ✅ Custom Cursor
+  useEffect(() => {
+    const cursor = document.getElementById("cursor");
+    const ring = document.getElementById("cursorRing");
 
-  const move = (e) => {
-    mx = e.clientX;
-    my = e.clientY;
+    let mx = 0, my = 0, rx = 0, ry = 0;
 
-    if (cursor) {
-      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+    const move = (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (cursor) {
+        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+      }
+    };
+
+    document.addEventListener("mousemove", move);
+
+    function animate() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+
+      if (ring) {
+        ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      }
+
+      requestAnimationFrame(animate);
     }
-  };
 
-  document.addEventListener("mousemove", move);
+    animate();
 
-  function animate() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-
-    if (ring) {
-      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  return () => {
-    document.removeEventListener("mousemove", move);
-  };
-}, []);
+    return () => document.removeEventListener("mousemove", move);
+  }, []);
 
   return (
     <div className="dashboard-bg">
-    <div className="cursor" id="cursor"></div>
-    <div className="cursor-ring" id="cursorRing"></div>
 
-      <h1 className="dashboard-title">🛡 Admin Dashboard</h1>
+      {/* Cursor */}
+      <div className="cursor" id="cursor"></div>
+      <div className="cursor-ring" id="cursorRing"></div>
 
+      {/* HEADER */}
+      <div className="dashboard-header">
+        <h1 className="dashboard-title">🛡 Admin Dashboard</h1>
+
+        <div className="menu-container">
+          <button
+            className="menu-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setMenuOpen(!menuOpen);
+            }}
+          >
+            ⋮
+          </button>
+
+          {menuOpen && (
+            <div className="dropdown-menu">
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* MESSAGES */}
       <div className="messages-list">
-
         {messages.length === 0 ? (
           <p className="no-data">No messages found</p>
         ) : (
@@ -103,13 +145,14 @@ function AdminDashboard() {
 
               <div className="row-item">
                 <span className="label">Message:</span>
-                <span className="value message-text">{msg.message}</span>
+                <span className="value message-text">
+                  {msg.message}
+                </span>
               </div>
 
             </div>
           ))
         )}
-
       </div>
     </div>
   );
