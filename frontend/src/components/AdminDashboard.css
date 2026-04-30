@@ -1,129 +1,149 @@
-body {
-  cursor: none;
-  background: #050a10;
-  color: #e8f4ff;
+:root {
+  --bg: #050a10;
+  --accent: #00f0ff;
+  --accent2: #7b2fff;
+  --accent3: #ff2f7b;
+  --text: #e8f4ff;
+  --muted: #5a7a9a;
+  --border: rgba(0,240,255,.15);
 }
 
-/* Cursor */
+/* BACKGROUND */
+.dashboard-bg {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  padding: 40px;
+  font-family: 'Syne', sans-serif;
+}
+
+/* HEADER */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-header h2 {
+  font-size: 28px;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+}
+
+/* MENU */
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background: rgba(5,14,24,.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown button:hover {
+  background: rgba(0,240,255,.1);
+}
+
+/* MESSAGE CARDS */
+.messages-container {
+  display: grid;
+  gap: 20px;
+}
+
+.message-card {
+  background: rgba(0,240,255,.04);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: 0.3s;
+}
+
+.message-card:hover {
+  box-shadow: 0 0 20px rgba(0,240,255,.2);
+  transform: translateY(-3px);
+}
+
+.message-card p {
+  margin: 8px 0;
+  font-family: 'Space Mono', monospace;
+}
+
+.message-card strong {
+  color: var(--accent);
+}
+
+/* PAGINATION */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  color: #050a10;
+  box-shadow: 0 0 15px rgba(0,240,255,.3);
+}
+
+.pagination button:hover {
+  box-shadow: 0 0 25px rgba(0,240,255,.6);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* CURSOR */
 .cursor {
   width: 12px;
   height: 12px;
-  background: #00f0ff;
+  background: var(--accent);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  box-shadow: 0 0 10px #00f0ff;
+  box-shadow: 0 0 10px var(--accent), 0 0 30px var(--accent);
 }
 
 .cursor-ring {
   width: 36px;
   height: 36px;
-  border: 1.5px solid #00f0ff;
+  border: 1.5px solid var(--accent);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9998;
-}
-
-/* Header */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px;
-}
-
-.dashboard-title {
-  color: #00f0ff;
-  font-size: 2rem;
-}
-
-/* Menu */
-.menu-container {
-  position: relative;
-}
-
-.menu-btn {
-  background: transparent;
-  border: none;
-  font-size: 22px;
-  color: #00f0ff;
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  position: absolute;
-  right: 0;
-  top: 35px;
-  background: #0b1620;
-  border: 1px solid rgba(0,240,255,0.2);
-  border-radius: 8px;
-}
-
-.dropdown-menu button {
-  padding: 10px;
-  width: 120px;
-  border: none;
-  background: none;
-  color: #ff2f7b;
-  cursor: pointer;
-}
-
-/* Messages */
-.messages-list {
-  padding: 20px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.message-row {
-  background: rgba(0,240,255,0.05);
-  border: 1px solid rgba(0,240,255,0.2);
-  padding: 15px;
-  border-radius: 10px;
-}
-
-/* Header */
-.row-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.name {
-  color: #00f0ff;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 0.75rem;
-  color: #888;
-}
-
-/* Fields */
-.row-item {
-  display: flex;
-  gap: 6px;
-  margin-top: 5px;
-}
-
-.label {
-  min-width: 70px;
-  color: #7b2fff;
-}
-
-.value {
-  color: #ccc;
-}
-
-.message-text {
-  flex: 1;
-  word-break: break-word;
-}
-
-/* Empty */
-.no-data {
-  text-align: center;
-  color: #888;
+  opacity: .6;
 }
