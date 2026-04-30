@@ -1,0 +1,88 @@
+.dashboard-bg {
+  min-height: 100vh;
+  padding: 40px;
+  background: #050a10;
+  color: #e8f4ff;
+  font-family: 'Syne', sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #00f0ff;
+  text-shadow: 0 0 15px rgba(0,240,255,0.4);
+}
+
+/* LIST FORMAT */
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ROW CARD */
+.message-row {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  transition: 0.3s;
+}
+
+.message-row:hover {
+  box-shadow: 0 0 20px rgba(0,240,255,0.2);
+  transform: translateY(-3px);
+}
+
+/* HEADER */
+.row-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-weight: bold;
+  color: #00f0ff;
+  font-size: 1.1rem;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* LABEL ROW */
+.row-item {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.label {
+  color: #147ee2;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.value {
+  color: #ccc;
+}
+
+/* MESSAGE BOX */
+.message-box {
+  margin-top: 10px;
+}
+
+.message-text {
+  margin-top: 5px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+/* EMPTY */
+.no-data {
+  text-align: center;
+  color: #888;
+}
