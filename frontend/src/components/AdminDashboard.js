@@ -43,7 +43,7 @@ function AdminDashboard() {
   // ✅ Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "https://myporfolio-rouge.vercel.app";
   };
 
   // ✅ Close menu on outside click
