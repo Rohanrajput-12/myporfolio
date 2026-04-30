@@ -6,7 +6,10 @@ function AdminDashboard() {
   const [messages, setMessages] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
 
-  // ✅ pagination
+  // ✅ NEW: search state
+  const [search, setSearch] = useState("");
+
+  // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const messagesPerPage = 10;
 
@@ -15,7 +18,6 @@ function AdminDashboard() {
     initCursor();
   }, []);
 
-  // ✅ FETCH DATA
   const fetchMessages = async () => {
     try {
       const res = await axios.get(
@@ -34,20 +36,27 @@ function AdminDashboard() {
     }
   };
 
-  // ✅ LOGOUT
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
 
-  // ✅ PAGINATION LOGIC
+  // ✅ FILTER LOGIC
+  const filteredMessages = messages.filter((msg) =>
+    msg.name?.toLowerCase().includes(search.toLowerCase()) ||
+    msg.email?.toLowerCase().includes(search.toLowerCase()) ||
+    msg.subject?.toLowerCase().includes(search.toLowerCase()) ||
+    msg.message?.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // pagination on filtered data
   const indexOfLast = currentPage * messagesPerPage;
   const indexOfFirst = indexOfLast - messagesPerPage;
-  const currentMessages = messages.slice(indexOfFirst, indexOfLast);
+  const currentMessages = filteredMessages.slice(indexOfFirst, indexOfLast);
 
-  const totalPages = Math.ceil(messages.length / messagesPerPage);
+  const totalPages = Math.ceil(filteredMessages.length / messagesPerPage);
 
-  // ✅ CURSOR
+  // cursor
   const initCursor = () => {
     const cursor = document.getElementById("cursor");
     const ring = document.getElementById("cursorRing");
@@ -84,7 +93,6 @@ function AdminDashboard() {
       <div className="dashboard-header">
         <h2>🛡 Admin Dashboard</h2>
 
-        {/* 3 dots menu */}
         <div className="menu-wrapper">
           <button onClick={() => setShowMenu(!showMenu)} className="menu-btn">
             ⋮
@@ -98,38 +106,57 @@ function AdminDashboard() {
         </div>
       </div>
 
+      {/* ✅ SEARCH BAR */}
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="🔍 Search by name, email, subject..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1); // reset page on search
+          }}
+        />
+      </div>
+
       {/* Messages */}
       <div className="messages-container">
-        {currentMessages.map((msg, index) => (
-          <div key={index} className="message-card">
-
-            <p><strong>Name:</strong> {msg.name || "N/A"}</p>
-            <p><strong>Email:</strong> {msg.email}</p>
-            <p><strong>Subject:</strong> {msg.subject}</p>
-            <p><strong>Message:</strong> {msg.message}</p>
-
-          </div>
-        ))}
+        {currentMessages.length > 0 ? (
+          currentMessages.map((msg, index) => (
+            <div key={index} className="message-card">
+              <p><strong>Name:</strong> {msg.name || "N/A"}</p>
+              <p><strong>Email:</strong> {msg.email}</p>
+              <p><strong>Subject:</strong> {msg.subject}</p>
+              <p><strong>Message:</strong> {msg.message}</p>
+            </div>
+          ))
+        ) : (
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            No messages found 😔
+          </p>
+        )}
       </div>
 
       {/* Pagination */}
-      <div className="pagination">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          ◀ Prev
-        </button>
+      {filteredMessages.length > 0 && (
+        <div className="pagination">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            ◀ Prev
+          </button>
 
-        <span>Page {currentPage} / {totalPages}</span>
+          <span>Page {currentPage} / {totalPages}</span>
 
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next ▶
-        </button>
-      </div>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next ▶
+          </button>
+        </div>
+      )}
 
     </div>
   );
