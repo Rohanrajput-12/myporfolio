@@ -117,11 +117,11 @@ function AdminLogin() {
           
         </div>
 
-        <div className="warning">
+        {/* <div className="warning">
           <div className="warn-strip">
             ⚠ This portal is for system administrators only. Unauthorized access attempts are logged and reported to the system owner.
           </div>
-        </div>
+        </div> */}
 
         {error && <div className="error">{error}</div>}
 
@@ -151,10 +151,6 @@ function AdminLogin() {
         >
           {loading ? <div className="spinner"></div> : "🛡 Secure Login →"}
         </button>
-
-        <p className="note">
-          Admin accounts cannot be self-registered
-        </p>
 
       </div>
     </div>
