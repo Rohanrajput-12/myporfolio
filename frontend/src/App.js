@@ -1,20 +1,31 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import "./App.css";
+import { Toaster } from "react-hot-toast";
 import AdminDashboard from "./components/AdminDashboard";
 import YourPortfolio from "./components/YourPortfolio"; 
 
 function App() {
   return (
-    <Routes>
+    <>
+      {/* ✅ Correct place */}
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#050a10",
+            color: "#00f0ff",
+            border: "1px solid rgba(0,240,255,0.2)"
+          }
+        }}
+      />
 
-      <Route path="/" element={<YourPortfolio />} />
-
-      <Route path="/login" element={<Login />} />
-
-      <Route path="/dashboard" element={<AdminDashboard />} />
-
-    </Routes>
+      <Routes>
+        <Route path="/" element={<YourPortfolio />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </>
   );
 }
 

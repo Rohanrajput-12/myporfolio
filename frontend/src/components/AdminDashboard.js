@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import "./AdminDashboard.css";
 
 function AdminDashboard() {
@@ -82,7 +83,7 @@ function AdminDashboard() {
     animate();
   };
 
-  const handleDelete = async (id) => {
+const handleDelete = async (id) => {
   const confirmDelete = window.confirm("Delete this message?");
   if (!confirmDelete) return;
 
@@ -91,17 +92,20 @@ function AdminDashboard() {
       `https://myporfolio-6ms5.onrender.com/api/contact/${id}`,
       {
         headers: {
-          Authorization: localStorage.getItem("token") // ✅ ADD THIS
+          Authorization: localStorage.getItem("token")
         }
       }
     );
 
-    // remove from UI instantly
+    // ✅ Toast message
+    toast.success("Deleted successfully ✅");
+
+    // remove from UI
     setMessages(messages.filter((msg) => msg._id !== id));
 
   } catch (err) {
     console.error(err);
-    alert("Delete failed ❌");
+    toast.error("Delete failed ❌");
   }
 };
 
