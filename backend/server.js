@@ -83,6 +83,20 @@ app.get("/api/contact", verifyAdmin, async (req, res) => {
   }
 });
 
+// ✅ DELETE message (ADD THIS)
+app.delete("/api/contact/:id", verifyAdmin, async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await Contact.findByIdAndDelete(id);
+
+    res.json({ message: "Deleted successfully ✅" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Delete failed ❌" });
+  }
+});
+
 // Admin login
 app.post("/api/admin/login", async (req, res) => {
   const { email, password } = req.body;

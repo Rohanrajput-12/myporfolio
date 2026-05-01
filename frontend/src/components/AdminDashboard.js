@@ -82,6 +82,29 @@ function AdminDashboard() {
     animate();
   };
 
+  const handleDelete = async (id) => {
+  const confirmDelete = window.confirm("Delete this message?");
+  if (!confirmDelete) return;
+
+  try {
+    await axios.delete(
+      `https://myporfolio-6ms5.onrender.com/api/contact/${id}`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token") // ✅ ADD THIS
+        }
+      }
+    );
+
+    // remove from UI instantly
+    setMessages(messages.filter((msg) => msg._id !== id));
+
+  } catch (err) {
+    console.error(err);
+    alert("Delete failed ❌");
+  }
+};
+
   return (
     <div className="dashboard-bg">
 
@@ -124,6 +147,12 @@ function AdminDashboard() {
         {currentMessages.length > 0 ? (
           currentMessages.map((msg, index) => (
             <div key={index} className="message-card">
+               <button
+                className="delete-btn"
+                onClick={() => handleDelete(msg._id)}
+              >
+                ❌
+              </button>
               <p><strong>Name:</strong> {msg.name || "N/A"}</p>
               <p><strong>Email:</strong> {msg.email}</p>
               <p><strong>Subject:</strong> {msg.subject}</p>

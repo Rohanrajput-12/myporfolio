@@ -170,3 +170,28 @@
   border-color: #00f0ff;
   box-shadow: 0 0 10px rgba(0,240,255,.2);
 }
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,47,123,.1);
+  border: 1px solid rgba(255,47,123,.3);
+  color: #ff2f7b;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #ff2f7b;
+  color: black;
+  box-shadow: 0 0 10px #ff2f7b;
+}
+
+/* IMPORTANT for positioning */
+.message-card {
+  position: relative;
+}
