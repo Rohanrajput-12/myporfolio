@@ -4,6 +4,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import AdminDashboard from "./components/AdminDashboard";
 import YourPortfolio from "./components/YourPortfolio"; 
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -23,7 +24,14 @@ function App() {
       <Routes>
         <Route path="/" element={<YourPortfolio />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
