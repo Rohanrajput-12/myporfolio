@@ -81,7 +81,11 @@ function AdminLogin() {
         { email, password }
       );
 
+      // localStorage.setItem("token", res.data.token);
+      const expiryTime = Date.now() + 60 * 60 * 1000; 
+
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("expiry", expiryTime); 
 
       setTimeout(() => {
         setLoading(false);
@@ -94,6 +98,8 @@ function AdminLogin() {
     }
   };
   
+
+ 
 
   return (
 
