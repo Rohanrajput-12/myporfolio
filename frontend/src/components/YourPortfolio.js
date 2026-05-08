@@ -401,7 +401,7 @@ useEffect(() => {
 
 {/* Footer */}
 <footer>
-  <div className="footer-copy">© 2026 R-Zip — All rights reserved.</div>
+  <div className="footer-copy">© 2026 Developed by Rohan Singh Rajput — All rights reserved.</div>
   <div className="footer-socials">
     <a href=" ">GitHub</a>
     <a href=" ">LinkedIn</a>
