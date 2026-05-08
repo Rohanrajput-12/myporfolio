@@ -123,7 +123,7 @@ function AdminDashboard() {
         localStorage.clear();
         toast.error("Session expired ⏳");
         setTimeout(() => {
-          window.location.href = "/login";
+          window.location.href = "/https://myporfolio-rouge.vercel.app/";
         }, 1500);
       }
     }, 5000);
