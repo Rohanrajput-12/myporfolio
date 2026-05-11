@@ -407,7 +407,7 @@ useEffect(() => {
     <a href=" ">LinkedIn</a>
     <a href=" ">Twitter</a>
     <a href=" ">Resume</a>
-    <a href="/login">Sign Up</a>
+    <a href="/login">Login</a>
 
 
   </div>

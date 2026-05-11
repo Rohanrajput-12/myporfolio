@@ -105,7 +105,7 @@ function AdminDashboard() {
         }
       );
 
-      toast.success("Delete successfully ✅");
+      toast.success("Deleted successfully ✅");
 
       setMessages(messages.filter((msg) => msg._id !== id));
     } catch (err) {
