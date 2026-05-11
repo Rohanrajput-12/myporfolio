@@ -540,4 +540,40 @@
     .form-row{ grid-template-columns:1fr; }
   }
 
-  
+  .notification-bell {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.unread-message {
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 20px rgba(0,240,255,0.4);
+  background: rgba(0,240,255,0.08);
+}
