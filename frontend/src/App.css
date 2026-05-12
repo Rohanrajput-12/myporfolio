@@ -528,16 +528,149 @@
     100%{transform:translateY(-120px); opacity:0;}
   }
 
-  @media(max-width:900px){
-    nav{ padding:1rem 1.5rem; }
-    .nav-links{ gap:1.5rem; }
-    #about{ padding:5rem 1.5rem; }
-    .about-grid{ grid-template-columns:1fr; gap:2.5rem; }
-    #workshop{ padding:5rem 1.5rem; }
-    .projects-grid{ grid-template-columns:1fr; }
-    #contact{ padding:5rem 1.5rem; }
-    footer{ padding:1.5rem; flex-direction:column; gap:1rem; }
-    .form-row{ grid-template-columns:1fr; }
+ /* ================= MOBILE RESPONSIVE ================= */
+
+@media screen and (max-width: 900px) {
+
+  /* NAVBAR */
+  nav {
+    padding: 14px 18px;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
   }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 0;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(0,240,255,0.05);
+    border: 1px solid rgba(0,240,255,0.08);
+  }
+
+  .nav-links a:hover {
+    background: rgba(0,240,255,0.12);
+  }
+
+  /* HERO */
+  #home {
+    padding-top: 180px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero-name {
+    font-size: 2.6rem;
+    line-height: 1.1;
+  }
+
+  .hero-role {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  /* ABOUT */
+  #about {
+    padding: 4rem 1.2rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* WORKSHOP */
+  #workshop {
+    padding: 4rem 1.2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 1.4rem;
+  }
+
+  /* CONTACT */
+  #contact {
+    padding: 4rem 1.2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-socials {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* CURSOR OFF FOR MOBILE */
+  .cursor,
+  .cursor-ring {
+    display: none;
+  }
+
+  body {
+    cursor: auto;
+  }
+}
+
+
 
   
