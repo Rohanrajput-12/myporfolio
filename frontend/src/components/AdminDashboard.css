@@ -194,6 +194,7 @@
 /* IMPORTANT for positioning */
 .message-card {
   position: relative;
+  margin-bottom: 18px;
 }
 
 .date-header {
