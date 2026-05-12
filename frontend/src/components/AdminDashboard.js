@@ -25,7 +25,7 @@ function AdminDashboard() {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
-        }
+        },
       );
       setMessages(res.data);
     } catch (err) {
@@ -48,16 +48,13 @@ function AdminDashboard() {
       msg.name?.toLowerCase().includes(search.toLowerCase()) ||
       msg.email?.toLowerCase().includes(search.toLowerCase()) ||
       msg.subject?.toLowerCase().includes(search.toLowerCase()) ||
-      msg.message?.toLowerCase().includes(search.toLowerCase())
+      msg.message?.toLowerCase().includes(search.toLowerCase()),
   );
 
   // ================= PAGINATION =================
   const indexOfLast = currentPage * messagesPerPage;
   const indexOfFirst = indexOfLast - messagesPerPage;
-  const currentMessages = filteredMessages.slice(
-    indexOfFirst,
-    indexOfLast
-  );
+  const currentMessages = filteredMessages.slice(indexOfFirst, indexOfLast);
 
   const totalPages = Math.ceil(filteredMessages.length / messagesPerPage);
 
@@ -102,7 +99,7 @@ function AdminDashboard() {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
-        }
+        },
       );
 
       toast.success("Deleted successfully ✅");
@@ -174,10 +171,7 @@ function AdminDashboard() {
         <h2>🛡 Admin Dashboard</h2>
 
         <div className="menu-wrapper">
-          <button
-            onClick={() => setShowMenu(!showMenu)}
-            className="menu-btn"
-          >
+          <button onClick={() => setShowMenu(!showMenu)} className="menu-btn">
             ⋮
           </button>
 
@@ -207,14 +201,35 @@ function AdminDashboard() {
         {Object.keys(groupedMessages).length > 0 ? (
           Object.entries(groupedMessages).map(([date, msgs]) => (
             <div key={date}>
-              
               {/* DATE HEADER */}
               <h3 className="date-header">{date}</h3>
 
               {msgs.map((msg) => (
-                <div key={msg._id} className="message-card">
+                <div
+                  key={msg._id}
+                  className={`message-card ${
+                    !msg.read ? "unread-message" : ""
+                  }`}
+                  onClick={async () => {
+                    // already read
+                    if (msg.read) return;
 
-                  {/* TOP ROW */}
+                    try {
+                      await axios.put(
+                        `https://myporfolio-6ms5.onrender.com/api/contact/read/${msg._id}`,
+                      );
+
+                      // update UI instantly
+                      setMessages((prev) =>
+                        prev.map((m) =>
+                          m._id === msg._id ? { ...m, read: true } : m,
+                        ),
+                      );
+                    } catch (err) {
+                      console.log(err);
+                    }
+                  }}
+                >
                   <div className="message-top">
                     <span className="msg-time">
                       {new Date(msg.createdAt).toLocaleTimeString()}
@@ -222,16 +237,30 @@ function AdminDashboard() {
 
                     <button
                       className="delete-btn"
-                      onClick={() => handleDelete(msg._id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(msg._id);
+                      }}
                     >
                       ❌
                     </button>
                   </div>
 
-                  <p><strong>Name:</strong> {msg.name || "N/A"}</p>
-                  <p><strong>Email:</strong> {msg.email}</p>
-                  <p><strong>Subject:</strong> {msg.subject}</p>
-                  <p><strong>Message:</strong> {msg.message}</p>
+                  <p>
+                    <strong>Name:</strong> {msg.name || "N/A"}
+                  </p>
+
+                  <p>
+                    <strong>Email:</strong> {msg.email}
+                  </p>
+
+                  <p>
+                    <strong>Subject:</strong> {msg.subject}
+                  </p>
+
+                  <p>
+                    <strong>Message:</strong> {msg.message}
+                  </p>
                 </div>
               ))}
             </div>

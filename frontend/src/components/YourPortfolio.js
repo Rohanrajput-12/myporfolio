@@ -11,6 +11,7 @@ function YourPortfolio() {
     subject: "",
     message: ""
   });
+  const [hasNotification, setHasNotification] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,6 +38,38 @@ function YourPortfolio() {
       alert("Something went wrong ❌");
     }
   };
+
+  useEffect(() => {
+
+  const checkUnreadMessages = async () => {
+
+    try {
+
+      const res = await axios.get(
+        "https://myporfolio-6ms5.onrender.com/api/unread-count"
+      );
+
+      setHasNotification(res.data.count > 0);
+
+    } catch (err) {
+
+      console.log(err);
+    }
+  };
+
+  // first load
+  checkUnreadMessages();
+
+  // auto refresh
+  const interval = setInterval(() => {
+
+    checkUnreadMessages();
+
+  }, 5000);
+
+  return () => clearInterval(interval);
+
+}, []);
 
 useEffect(() => {
   // ── Custom Cursor
@@ -201,6 +234,13 @@ useEffect(() => {
           <li><a href="#about">About</a></li>
           <li><a href="#workshop">Workshop</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          <div className="notification-bell">
+            📩
+
+            {hasNotification && (
+              <span className="notification-dot"></span>
+            )}
+          </div>
         </ul>
       </nav>
 

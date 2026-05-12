@@ -5,119 +5,183 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware
+// ================= MIDDLEWARE =================
 app.use(express.json());
 
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://myporfolio-rouge.vercel.app"
-  ]
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://myporfolio-rouge.vercel.app",
+    ],
+  }),
+);
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
+// ================= MONGODB =================
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected ✅"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
-/* =========================
-   SCHEMAS
-========================= */
-
-// Contact Schema
+// ================= SCHEMA =================
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
   subject: String,
   message: String,
-  createdAt: { type: Date, default: Date.now }
+
+  // IMPORTANT
+  read: {
+    type: Boolean,
+    default: false,
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Contact = mongoose.model("Contact", contactSchema);
 
-// Admin Schema
+// ================= ADMIN =================
 const adminSchema = new mongoose.Schema({
   email: String,
-  password: String
+  password: String,
 });
 
 const Admin = mongoose.model("Admin", adminSchema);
 
-/* =========================
-   MIDDLEWARE
-========================= */
-
-// Simple auth middleware
+// ================= AUTH =================
 const verifyAdmin = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token !== "admin-token") {
-    return res.status(403).json({ message: "Unauthorized ❌" });
+    return res.status(403).json({
+      message: "Unauthorized ❌",
+    });
   }
 
   next();
 };
 
-/* =========================
-   ROUTES
-========================= */
-
-// Save contact form
+// ================= SAVE CONTACT =================
 app.post("/api/contact", async (req, res) => {
   try {
     const data = new Contact(req.body);
+
     await data.save();
-    res.json({ message: "Saved successfully ✅" });
+
+    res.json({
+      message: "Message sent ✅",
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
-// Get all messages (PROTECTED)
+// ================= GET ALL MESSAGES =================
 app.get("/api/contact", verifyAdmin, async (req, res) => {
   try {
-    const messages = await Contact.find().sort({ createdAt: -1 });
+    const messages = await Contact.find().sort({
+      createdAt: -1,
+    });
+
     res.json(messages);
-  } catch {
-    res.status(500).json({ message: "Error fetching messages" });
+  } catch (err) {
+    res.status(500).json({
+      message: "Error fetching messages",
+    });
   }
 });
 
-// ✅ DELETE message (ADD THIS)
+// ================= UNREAD COUNT =================
+app.get("/api/unread-count", async (req, res) => {
+  try {
+    const count = await Contact.countDocuments({
+      read: false,
+    });
+
+    res.json({
+      count,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Error fetching unread count",
+    });
+  }
+});
+
+// ================= MARK MESSAGE AS READ =================
+app.put("/api/contact/read/:id", async (req, res) => {
+  try {
+    const updatedMessage = await Contact.findByIdAndUpdate(
+      req.params.id,
+      {
+        read: true,
+      },
+      {
+        new: true,
+      },
+    );
+
+    res.json(updatedMessage);
+  } catch (err) {
+    res.status(500).json({
+      message: "Error updating message",
+    });
+  }
+});
+
+// ================= DELETE MESSAGE =================
 app.delete("/api/contact/:id", verifyAdmin, async (req, res) => {
   try {
-    const id = req.params.id;
+    await Contact.findByIdAndDelete(req.params.id);
 
-    await Contact.findByIdAndDelete(id);
-
-    res.json({ message: "Deleted successfully ✅" });
+    res.json({
+      message: "Deleted successfully ✅",
+    });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Delete failed ❌" });
+    res.status(500).json({
+      message: "Delete failed ❌",
+    });
   }
 });
 
-// Admin login
+// ================= ADMIN LOGIN =================
 app.post("/api/admin/login", async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const admin = await Admin.findOne({ email });
+    const admin = await Admin.findOne({
+      email,
+    });
 
-  if (!admin) {
-    return res.status(401).json({ message: "Admin not found ❌" });
+    if (!admin) {
+      return res.status(401).json({
+        message: "Admin not found ❌",
+      });
+    }
+
+    if (admin.password !== password) {
+      return res.status(401).json({
+        message: "Wrong password ❌",
+      });
+    }
+
+    res.json({
+      token: "admin-token",
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Login failed",
+    });
   }
-
-  if (admin.password !== password) {
-    return res.status(401).json({ message: "Wrong password ❌" });
-  }
-
-  res.json({ token: "admin-token" });
 });
 
-/* =========================
-   SERVER
-========================= */
-
+// ================= SERVER =================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
