@@ -80,7 +80,6 @@
   border-radius: 12px;
   backdrop-filter: blur(12px);
   transition: 0.3s;
-  margin-bottom: 18px;
 }
 
 .message-card:hover {

@@ -114,48 +114,6 @@ app.post("/api/admin/login", async (req, res) => {
   res.json({ token: "admin-token" });
 });
 
-app.get("/api/unread-count", async (req, res) => {
-
-  try {
-
-    const count = await Contact.countDocuments({
-      read: false
-    });
-
-    res.json({ count });
-
-  } catch (err) {
-
-    res.status(500).json({
-      message: "Error fetching unread count"
-    });
-  }
-});
-
-app.put("/api/contact/read/:id", async (req, res) => {
-
-  try {
-
-    const updatedMessage = await Contact.findByIdAndUpdate(
-      req.params.id,
-      {
-        read: true
-      },
-      {
-        new: true
-      }
-    );
-
-    res.json(updatedMessage);
-
-  } catch (err) {
-
-    res.status(500).json({
-      message: "Error updating message"
-    });
-  }
-});
-
 /* =========================
    SERVER
 ========================= */

@@ -212,68 +212,28 @@ function AdminDashboard() {
               <h3 className="date-header">{date}</h3>
 
               {msgs.map((msg) => (
-  <div
-    key={msg._id}
-    className={`message-card ${!msg.read ? "unread-message" : ""}`}
-    onClick={async () => {
+                <div key={msg._id} className="message-card">
 
-      // already read
-      if (msg.read) return;
+                  {/* TOP ROW */}
+                  <div className="message-top">
+                    <span className="msg-time">
+                      {new Date(msg.createdAt).toLocaleTimeString()}
+                    </span>
 
-      try {
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(msg._id)}
+                    >
+                      ❌
+                    </button>
+                  </div>
 
-        await axios.put(
-          `https://myporfolio-6ms5.onrender.com/api/contact/read/${msg._id}`
-        );
-
-        // instant UI update
-        setMessages((prev) =>
-          prev.map((m) =>
-            m._id === msg._id
-              ? { ...m, read: true }
-              : m
-          )
-        );
-
-      } catch (err) {
-        console.log(err);
-      }
-    }}
-  >
-
-    <div className="message-top">
-
-      <span className="msg-time">
-        {new Date(msg.createdAt).toLocaleTimeString()}
-      </span>
-
-      <button
-        className="delete-btn"
-        onClick={() => handleDelete(msg._id)}
-      >
-        ❌
-      </button>
-
-    </div>
-
-    <p>
-      <strong>Name:</strong> {msg.name || "N/A"}
-    </p>
-
-    <p>
-      <strong>Email:</strong> {msg.email}
-    </p>
-
-    <p>
-      <strong>Subject:</strong> {msg.subject}
-    </p>
-
-    <p>
-      <strong>Message:</strong> {msg.message}
-    </p>
-
-  </div>
-))}
+                  <p><strong>Name:</strong> {msg.name || "N/A"}</p>
+                  <p><strong>Email:</strong> {msg.email}</p>
+                  <p><strong>Subject:</strong> {msg.subject}</p>
+                  <p><strong>Message:</strong> {msg.message}</p>
+                </div>
+              ))}
             </div>
           ))
         ) : (
